@@ -364,7 +364,7 @@ public function compare(Request $request)
         }
 
         $specimen->save();
-        return redirect('/admin')->with('success', 'Successfully updated!');
+        return redirect('/specimen/' . $id)->with('success', 'Successfully updated!');
         
     } catch (\Exception $e) {
         return back()->with('error', 'Update Failed: ' . $e->getMessage());
