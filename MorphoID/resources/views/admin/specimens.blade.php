@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1280">
     <title>Manage Specimens | Morpho.ID Admin</title>
     @vite(['resources/css/specimenmanage.css', 'resources/js/specimenmanage.js'])
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
