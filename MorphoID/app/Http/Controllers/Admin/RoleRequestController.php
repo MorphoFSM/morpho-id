@@ -64,7 +64,7 @@ class RoleRequestController extends Controller
             LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'New Admin Approved', 'created_at' => Carbon::now()]);
 
             return back()->with('success', 'New administrator has been approved. A verification email has been sent to them.');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return back()->with('error', 'Error approving admin: ' . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine());
         }
     }
@@ -84,7 +84,7 @@ class RoleRequestController extends Controller
             $admin->delete();
 
             return back()->with('success', 'New administrator registration has been rejected and deleted.');
-        } catch (\Exception $e) {
+        } catch (\Throwable $e) {
             return back()->with('error', 'Error rejecting admin: ' . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine());
         }
     }
