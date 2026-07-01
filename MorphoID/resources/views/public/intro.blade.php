@@ -81,6 +81,14 @@
                 <a href="/registration" class="btn btn-secondary">Register</a>
             </div>
 
+            <div style="margin-top: 2.5rem; animation: fadeUp 1s ease 0.6s backwards;">
+                <p style="font-size: 0.85rem; color: #a0aec0; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Also available on mobile</p>
+                <a href="/downloads/MorphoID.apk" download class="btn" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #e2e8f0; display: inline-flex; align-items: center; gap: 10px; font-size: 0.95rem; padding: 10px 20px; transition: all 0.3s ease; backdrop-filter: blur(5px);" onmouseover="this.style.background='rgba(164, 198, 57, 0.15)'; this.style.borderColor='#a4c639';" onmouseout="this.style.background='rgba(255, 255, 255, 0.05)'; this.style.borderColor='rgba(255, 255, 255, 0.15)';">
+                    <i class="fa-brands fa-android" style="color: #a4c639; font-size: 1.3rem;"></i>
+                    Download Morpho.ID App (APK)
+                </a>
+            </div>
+
         </main>
     </div>
 
