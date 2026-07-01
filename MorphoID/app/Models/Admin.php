@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
 
-#[Fillable(['name', 'email', 'userid', 'institusi', 'password'])]
+#[Fillable(['name', 'email', 'userid', 'institusi', 'password', 'admin_key'])]
 #[Hidden(['password', 'remember_token'])]
 class Admin extends Authenticatable
 {
