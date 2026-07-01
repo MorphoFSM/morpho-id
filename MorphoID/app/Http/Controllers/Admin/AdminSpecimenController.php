@@ -262,103 +262,113 @@ public function compare(Request $request)
 
     public function update(Request $request, $id)
 {
-    $specimen = Specimen::findOrFail($id);
+    try {
+        $specimen = Specimen::findOrFail($id);
 
-    // 1. Update maklumat asas
-    $specimen->nama_spesimen = $request->nama_spesimen;
-    $specimen->penerangan = $request->Description;
-    $specimen->ciri_ciri = $request->ciri_ciri;
+        // 1. Update maklumat asas
+        $specimen->nama_spesimen = $request->nama_spesimen;
+        $specimen->penerangan = $request->Description;
+        $specimen->ciri_ciri = $request->ciri_ciri;
 
-    // 2 & 3. Update Kad Besar (Atuk/Parent) & Kategori (Bapak)
-    if ($request->has('parent_id')) {
-        $atuk_id = null;
-        if ($request->parent_id === 'new' && !empty($request->kad_besar_baru)) {
-            $atuk = Category::create(['nama_kategori' => trim($request->kad_besar_baru), 'parent_id' => null]);
-            $atuk_id = $atuk->id;
-        } else {
-            $atuk_id = $request->parent_id;
-        }
-        $specimen->parent_id = $atuk_id;
-
-        // Kategori (Bapak) depend on Atuk
-        if ($request->has('kategori')) {
-            $nama_kategori_input = trim($request->kategori);
-            $nama_kategori_baru_input = trim($request->Category_baru);
-
-            if ($nama_kategori_input === 'new_Category' || !empty($nama_kategori_baru_input)) {
-                $bapak = Category::create(['nama_kategori' => $nama_kategori_baru_input, 'parent_id' => $atuk_id]);
-                $specimen->category_id = $bapak->id;
+        // 2 & 3. Update Kad Besar (Atuk/Parent) & Kategori (Bapak)
+        if ($request->has('parent_id')) {
+            $atuk_id = null;
+            if ($request->parent_id === 'new' && !empty($request->kad_besar_baru)) {
+                $atuk = Category::create(['nama_kategori' => trim($request->kad_besar_baru), 'parent_id' => null]);
+                $atuk_id = $atuk->id;
             } else {
-                $specimen->category_id = $nama_kategori_input;
+                $atuk_id = $request->parent_id;
+            }
+            $specimen->parent_id = $atuk_id;
+
+            // Kategori (Bapak) depend on Atuk
+            if ($request->has('kategori')) {
+                $nama_kategori_input = trim($request->kategori);
+                $nama_kategori_baru_input = trim($request->Category_baru);
+
+                if ($nama_kategori_input === 'new_Category' || !empty($nama_kategori_baru_input)) {
+                    $bapak = Category::create(['nama_kategori' => $nama_kategori_baru_input, 'parent_id' => $atuk_id]);
+                    $specimen->category_id = $bapak->id;
+                } else {
+                    $specimen->category_id = $nama_kategori_input;
+                }
+            }
+        } else {
+            // Fallback kalau tak ubah parent_id langsung
+            if ($request->has('kategori')) {
+                $specimen->category_id = $request->kategori;
             }
         }
-    } else {
-        // Fallback kalau tak ubah parent_id langsung
-        if ($request->has('kategori')) {
-            $specimen->category_id = $request->kategori;
-        }
-    }
 
-    // 4. Update Gambar
-    if ($request->has('remove_image') && $request->remove_image == '1') {
-        $specimen->gambar = null;
-        $specimen->galeri = [];
-    } else {
-        $supabaseUrl = env('SUPABASE_URL');
-        $supabaseKey = env('SUPABASE_KEY');
-        $cleanBaseUrl = str_replace('/rest/v1', '', rtrim($supabaseUrl, '/'));
-        
-        $coverImageUrl = null;
-
-        if ($request->hasFile('cover_image')) {
-            $file = $request->file('cover_image');
-            $fileName = time() . '_cover_' . uniqid() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
-            $safeFileName = rawurlencode($fileName);
-            $endpoint = $cleanBaseUrl . '/storage/v1/object/natey/uploads/' . $safeFileName;
-
-            $response = \Illuminate\Support\Facades\Http::withHeaders([
-                'Authorization' => 'Bearer ' . $supabaseKey,
-                'apikey'        => $supabaseKey,
-                'Content-Type'  => $file->getMimeType(),
-            ])->withBody(file_get_contents($file), $file->getMimeType())->post($endpoint);
-
-            if ($response->failed()) {
-                return back()->with('error', 'Cover Image failed to upload: ' . $response->body());
+        // 4. Update Gambar
+        if ($request->has('remove_image') && $request->remove_image == '1') {
+            $specimen->gambar = null;
+            $specimen->galeri = [];
+        } else {
+            $supabaseUrl = env('SUPABASE_URL');
+            $supabaseKey = env('SUPABASE_KEY');
+            
+            if (!$supabaseUrl || !$supabaseKey) {
+                throw new \Exception("SUPABASE_URL or SUPABASE_KEY is missing from environment variables.");
             }
-            $coverImageUrl = $cleanBaseUrl . '/storage/v1/object/public/natey/uploads/' . $safeFileName;
-            $specimen->gambar = $coverImageUrl;
-        }
+            
+            $cleanBaseUrl = str_replace('/rest/v1', '', rtrim($supabaseUrl, '/'));
+            
+            $coverImageUrl = null;
 
-        if ($request->hasFile('gambar')) {
-            $files = is_array($request->file('gambar')) ? $request->file('gambar') : [$request->file('gambar')];
-            $publicUrls = [];
-    
-            foreach ($files as $file) {
-                $fileName = time() . '_' . uniqid() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
+            if ($request->hasFile('cover_image')) {
+                $file = $request->file('cover_image');
+                $fileName = time() . '_cover_' . uniqid() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
                 $safeFileName = rawurlencode($fileName);
                 $endpoint = $cleanBaseUrl . '/storage/v1/object/natey/uploads/' . $safeFileName;
-    
+
                 $response = \Illuminate\Support\Facades\Http::withHeaders([
                     'Authorization' => 'Bearer ' . $supabaseKey,
                     'apikey'        => $supabaseKey,
                     'Content-Type'  => $file->getMimeType(),
                 ])->withBody(file_get_contents($file), $file->getMimeType())->post($endpoint);
-    
-                if ($response->failed()) {
-                    return back()->with('error', 'Image failed to upload: ' . $response->body());
-                }
-                $publicUrls[] = $cleanBaseUrl . '/storage/v1/object/public/natey/uploads/' . $safeFileName;
-            }
-            
-            if (empty($specimen->gambar) && count($publicUrls) > 0) {
-                $specimen->gambar = $publicUrls[0];
-            }
-            $specimen->galeri = $publicUrls;
-        }
-    }
 
-    $specimen->save();
-    return redirect('/admin')->with('success', 'Successfully updated!');
+                if ($response->failed()) {
+                    throw new \Exception('Cover Image failed to upload: ' . $response->body());
+                }
+                $coverImageUrl = $cleanBaseUrl . '/storage/v1/object/public/natey/uploads/' . $safeFileName;
+                $specimen->gambar = $coverImageUrl;
+            }
+
+            if ($request->hasFile('gambar')) {
+                $files = is_array($request->file('gambar')) ? $request->file('gambar') : [$request->file('gambar')];
+                $publicUrls = [];
+        
+                foreach ($files as $file) {
+                    $fileName = time() . '_' . uniqid() . '_' . str_replace(' ', '_', $file->getClientOriginalName());
+                    $safeFileName = rawurlencode($fileName);
+                    $endpoint = $cleanBaseUrl . '/storage/v1/object/natey/uploads/' . $safeFileName;
+        
+                    $response = \Illuminate\Support\Facades\Http::withHeaders([
+                        'Authorization' => 'Bearer ' . $supabaseKey,
+                        'apikey'        => $supabaseKey,
+                        'Content-Type'  => $file->getMimeType(),
+                    ])->withBody(file_get_contents($file), $file->getMimeType())->post($endpoint);
+        
+                    if ($response->failed()) {
+                        throw new \Exception('Image failed to upload: ' . $response->body());
+                    }
+                    $publicUrls[] = $cleanBaseUrl . '/storage/v1/object/public/natey/uploads/' . $safeFileName;
+                }
+                
+                if (empty($specimen->gambar) && count($publicUrls) > 0) {
+                    $specimen->gambar = $publicUrls[0];
+                }
+                $specimen->galeri = $publicUrls;
+            }
+        }
+
+        $specimen->save();
+        return redirect('/admin')->with('success', 'Successfully updated!');
+        
+    } catch (\Exception $e) {
+        return back()->with('error', 'Update Failed: ' . $e->getMessage());
+    }
 }
     //Tambah fungsi ni tepat sebelum fungsi updateCategory
     public function storeCategory(Request $request)
