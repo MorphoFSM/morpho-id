@@ -403,7 +403,7 @@ body {
     box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.2) !important;
 }
 .choices__list--dropdown .choices__item--selectable.is-highlighted {
-    background-color: var(--primary) !important;
+    background: linear-gradient(135deg, #050914 0%, #9D4EDD 100%) !important;
     color: white !important;
 }
 .choices__list--dropdown {
