@@ -91,7 +91,7 @@
                         <div class="request-details">
                             <h4>{{ $pAdmin->name }}</h4>
                             <p>User ID: {{ $pAdmin->userid }} | Email: {{ $pAdmin->email ?? 'N/A' }} | Institution: {{ $pAdmin->institusi }}</p>
-                            <p style="margin-top: 0.3rem; font-size: 0.8rem;">Registered on: {{ $pAdmin->created_at->format('d M Y, h:i A') }}</p>
+                            <p style="margin-top: 0.3rem; font-size: 0.8rem;">Registered on: {{ $pAdmin->created_at ? $pAdmin->created_at->format('d M Y, h:i A') : 'Unknown Date' }}</p>
                             <span class="badge-tag" style="background: rgba(157, 78, 221, 0.2); color: #9D4EDD; font-size: 0.7rem; padding: 2px 6px; margin-top: 5px; display: inline-block;">New Admin Registration</span>
                         </div>
                     </div>
