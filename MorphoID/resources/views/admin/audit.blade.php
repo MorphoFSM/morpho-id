@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=1280">
     <title>System Activity Logs | Morpho.ID Admin</title>
 
-    @vite(['resources/css/dashboard.css', 'resources/css/admin_visits.css', 'resources/js/dashboard.js'])
+    @vite(['resources/css/dashboard.css', 'resources/css/admin_visit.css', 'resources/js/dashboard.js'])
     <style>
         @media print {
             body { background: white !important; color: black !important; padding: 0 !important; margin: 0 !important; }
