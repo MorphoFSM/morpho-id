@@ -471,3 +471,8 @@ body {
     100% { background-position: 0% 50%; }
 }
 
+/* Fix for choices text color */
+.choices__inner, .choices__list--dropdown { color: #050914 !important; }
+.choices__item { color: #050914 !important; }
+#modalBanding .form-select option { color: #050914 !important; }
+
