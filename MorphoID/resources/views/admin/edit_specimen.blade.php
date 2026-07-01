@@ -25,6 +25,7 @@
                 <form action="{{ url('admin/specimen/update/' . $specimen->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
+                    <input type="hidden" name="redirect_to" value="{{ $previousUrl ?? '' }}">
 
                     <div class="input-group">
                         <label>NAME OF SPECIMEN</label>

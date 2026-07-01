@@ -257,7 +257,8 @@ public function compare(Request $request)
         $specimen = Specimen::findOrFail($id);
         $kategori_list = Category::whereNotNull('parent_id')->get();
         $induk_list = Category::whereNull('parent_id')->get();
-        return view('admin.edit_specimen', compact('specimen', 'kategori_list', 'induk_list'));
+        $previousUrl = url()->previous();
+        return view('admin.edit_specimen', compact('specimen', 'kategori_list', 'induk_list', 'previousUrl'));
     }
 
     public function update(Request $request, $id)
@@ -364,7 +365,12 @@ public function compare(Request $request)
         }
 
         $specimen->save();
-        return redirect('/specimen/' . $id)->with('success', 'Successfully updated!');
+        
+        $redirectTo = $request->input('redirect_to');
+        if (empty($redirectTo) || $redirectTo == url()->current()) {
+            $redirectTo = '/specimen/' . $id;
+        }
+        return redirect($redirectTo)->with('success', 'Successfully updated!');
         
     } catch (\Exception $e) {
         return back()->with('error', 'Update Failed: ' . $e->getMessage());
