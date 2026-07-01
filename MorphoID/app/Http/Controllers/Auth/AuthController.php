@@ -97,25 +97,19 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'userid' => $request->userid,
                 'institusi' => $request->institusi,
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->password),
+                'admin_key' => 'PENDING_APPROVAL'
             ]);
 
             LoginLog::create([
                 'userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator',
-                'status' => 'Success', 'note' => 'Account Registered', 'created_at' => Carbon::now()
+                'status' => 'Success', 'note' => 'Registration Pending Approval', 'created_at' => Carbon::now()
             ]);
 
-            $hash = sha1($admin->email);
-            $verifyLink = url('/verify-email/' . $admin->id . '/' . $hash . '/Administrator');
-            Mail::send('auth.register_success_admin', ['Name' => $admin->name, 'peranan' => 'System Administrator', 'link' => $verifyLink], function($message) use ($admin) {
-                $message->to($admin->email)->subject('Action Required: Administrator Access Provisioning');
-                $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
-            });
-
             if ($isApi) {
-                return response()->json(['status' => 'success', 'message' => 'Admin account created! Please check your email.'], 201);
+                return response()->json(['status' => 'success', 'message' => 'Admin registration submitted! Please wait for approval.'], 201);
             }
-            return redirect('/login')->with('success', 'Admin account created! Please check your email for verification.');
+            return redirect('/login')->with('success', 'Admin registration submitted! You will receive an email once your account is approved by an existing Administrator.');
 
         } else {
             $validatorUser = Validator::make($request->all(), ['userid' => 'unique:users,userid', 'email' => 'unique:users,email']);

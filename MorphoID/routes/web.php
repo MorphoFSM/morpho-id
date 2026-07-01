@@ -80,6 +80,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
     Route::get('/role-requests', [\App\Http\Controllers\Admin\RoleRequestController::class, 'index'])->name('role_requests');
     Route::post('/role-requests/{id}/approve', [\App\Http\Controllers\Admin\RoleRequestController::class, 'approve'])->name('role_requests.approve');
     Route::post('/role-requests/{id}/reject', [\App\Http\Controllers\Admin\RoleRequestController::class, 'reject'])->name('role_requests.reject');
+    Route::post('/role-requests/{id}/approve-pending', [\App\Http\Controllers\Admin\RoleRequestController::class, 'approvePendingAdmin'])->name('admin.role_requests.approve_pending');
+    Route::post('/role-requests/{id}/reject-pending', [\App\Http\Controllers\Admin\RoleRequestController::class, 'rejectPendingAdmin'])->name('admin.role_requests.reject_pending');
     
     // Specimen Management (CRUD)
     Route::post('/specimen/simpan', [\App\Http\Controllers\Admin\AdminSpecimenController::class, 'store'])->name('specimen.store');

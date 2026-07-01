@@ -42,7 +42,43 @@ class RoleRequestController extends Controller
     public function index()
     {
         $requests = RoleRequest::with('user')->where('status', 'pending')->get();
-        return view('admin.role_requests', compact('requests'));
+        $pendingAdmins = Admin::where('admin_key', 'PENDING_APPROVAL')->get();
+        return view('admin.role_requests', compact('requests', 'pendingAdmins'));
+    }
+
+    public function approvePendingAdmin($id)
+    {
+        $admin = Admin::where('id', $id)->where('admin_key', 'PENDING_APPROVAL')->firstOrFail();
+        $admin->admin_key = null; // Clear pending flag
+        $admin->save();
+
+        $hash = sha1($admin->email);
+        $verifyLink = url('/verify-email/' . $admin->id . '/' . $hash . '/Administrator');
+
+        Mail::send('auth.verify_admin_email', ['Name' => $admin->name, 'link' => $verifyLink], function($message) use ($admin) {
+            $message->to($admin->email)->subject('Action Required: Verify Your Administrator Account');
+            $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
+        });
+
+        LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'New Admin Approved', 'created_at' => Carbon::now()]);
+
+        return back()->with('success', 'New administrator has been approved. A verification email has been sent to them.');
+    }
+
+    public function rejectPendingAdmin($id)
+    {
+        $admin = Admin::where('id', $id)->where('admin_key', 'PENDING_APPROVAL')->firstOrFail();
+
+        Mail::send('auth.reject_admin_email', ['Name' => $admin->name], function($message) use ($admin) {
+            $message->to($admin->email)->subject('Update on Your Administrator Registration');
+            $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
+        });
+
+        LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Failed', 'note' => 'Admin Registration Rejected', 'created_at' => Carbon::now()]);
+
+        $admin->delete();
+
+        return back()->with('success', 'New administrator registration has been rejected and deleted.');
     }
 
     public function approve($id)

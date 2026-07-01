@@ -66,24 +66,53 @@
                             <h4>{{ $request->user->name }}</h4>
                             <p>User ID: {{ $request->user->userid }} | Email: {{ $request->user->email ?? 'N/A' }}</p>
                             <p style="margin-top: 0.3rem; font-size: 0.8rem;">Requested on: {{ $request->created_at->format('d M Y, h:i A') }}</p>
+                            <span class="badge-tag badge-pink" style="font-size: 0.7rem; padding: 2px 6px; margin-top: 5px; display: inline-block;">User requesting upgrade</span>
                         </div>
                     </div>
                     <div class="request-actions">
-                        <form action="{{ route('admin.role_requests.approve', $request->id) }}" method="POST">
+                        <form action="{{ route('role_requests.approve', $request->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn-approve" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Approve this request and make user an Admin?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Approve</button>
                         </form>
-                        <form action="{{ route('admin.role_requests.reject', $request->id) }}" method="POST">
+                        <form action="{{ route('role_requests.reject', $request->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn-reject" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Reject this request?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Reject</button>
                         </form>
                     </div>
                 </div>
                 @endforeach
-            @else
+            @endif
+
+            @if(isset($pendingAdmins) && $pendingAdmins->count() > 0)
+                @foreach($pendingAdmins as $pAdmin)
+                <div class="request-card" style="border-left: 4px solid #9D4EDD;">
+                    <div class="request-info">
+                        <img src="{{ $pAdmin->avatar ? $pAdmin->avatar : 'https://ui-avatars.com/api/?name='.urlencode($pAdmin->name).'&background=random' }}" alt="Avatar" class="request-avatar">
+                        <div class="request-details">
+                            <h4>{{ $pAdmin->name }}</h4>
+                            <p>User ID: {{ $pAdmin->userid }} | Email: {{ $pAdmin->email ?? 'N/A' }} | Institution: {{ $pAdmin->institusi }}</p>
+                            <p style="margin-top: 0.3rem; font-size: 0.8rem;">Registered on: {{ $pAdmin->created_at->format('d M Y, h:i A') }}</p>
+                            <span class="badge-tag" style="background: rgba(157, 78, 221, 0.2); color: #9D4EDD; font-size: 0.7rem; padding: 2px 6px; margin-top: 5px; display: inline-block;">New Admin Registration</span>
+                        </div>
+                    </div>
+                    <div class="request-actions">
+                        <form action="{{ route('admin.role_requests.approve_pending', $pAdmin->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-approve" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Approve this new Administrator registration? An email will be sent to them to verify their account.', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes, Approve'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Approve</button>
+                        </form>
+                        <form action="{{ route('admin.role_requests.reject_pending', $pAdmin->id) }}" method="POST">
+                            @csrf
+                            <button type="submit" class="btn-reject" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Reject and delete this registration? A rejection email will be sent.', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes, Reject'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Reject</button>
+                        </form>
+                    </div>
+                </div>
+                @endforeach
+            @endif
+
+            @if($requests->count() == 0 && (!isset($pendingAdmins) || $pendingAdmins->count() == 0))
                 <div class="empty-state">
                     <h3>No Pending Requests</h3>
-                    <p>There are currently no users requesting a role change.</p>
+                    <p>There are currently no users requesting a role change or new admin registrations.</p>
                 </div>
             @endif
         </div>
