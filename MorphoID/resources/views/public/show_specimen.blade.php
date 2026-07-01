@@ -356,7 +356,7 @@
                                             <button onclick="toggleEdit({{ $comment->id }})" class="btn btn-sm transition hover-shadow" style="background: rgba(0, 240, 255, 0.05); color: var(--primary); border: 1px solid rgba(0, 240, 255, 0.2); font-size: 0.75rem; padding: 0.4rem 0.8rem; border-radius: 50px;">
                                                 Edit
                                             </button>
-                                            <form action="{{ route('comment.destroy', $comment->id) }}" method="POST" onsubmit="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Are you sure you want to delete this comment?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { this.submit(); } })" style="margin: 0;">
+                                            <form action="{{ route('comment.destroy', $comment->id) }}" method="POST" class="no-loader" onsubmit="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Are you sure you want to delete this comment?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { document.getElementById('global-loader').style.display = 'flex'; this.submit(); } })" style="margin: 0;">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-sm transition hover-shadow" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); font-size: 0.75rem; padding: 0.4rem 0.8rem; border-radius: 50px;">
@@ -513,6 +513,7 @@
     <script>
         document.querySelectorAll('form').forEach(form => {
             form.addEventListener('submit', function() {
+                if (this.classList.contains('no-loader')) return;
                 document.getElementById('global-loader').style.display = 'flex';
                 const submitBtn = this.querySelector('button[type="submit"]');
                 if(submitBtn) {
