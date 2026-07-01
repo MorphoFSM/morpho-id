@@ -1,0 +1,142 @@
+/* ==========================================
+   CSS LOG PELAWAT & FILTER (GABUNGAN LENGKAP)
+   ========================================== */
+
+/* 1. BAHAGIAN FILTER & HEADER */
+.log-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+.filter-form {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+}
+.custom-filter {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-main);
+    background-color: #ffffff;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.custom-filter:focus, .custom-filter:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+.btn-reset-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    background-color: #fef2f2;
+    color: #ef4444;
+    border: 1px solid #fca5a5;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.btn-reset-filter:hover {
+    background-color: #ef4444;
+    color: #ffffff;
+}
+
+/* 2. GAYA TEXT & ALIGNMENT JADUAL */
+.table-header { display: flex; justify-content: space-between; align-items: center; }
+.text-right { text-align: right; }
+.date-text { font-weight: 800; color: var(--text-main); display: block; }
+.time-text { font-size: 0.75rem; font-weight: 700; color: var(--text-muted); margin-top: 0.3rem; display: inline-block; background: var(--bg-main); padding: 0.1rem 0.5rem; border-radius: 4px; letter-spacing: 0.5px; }
+.col-userid { font-size: 0.85rem; color: var(--primary); background-color: rgba(0, 240, 255, 0.1); font-weight: 800; padding: 0.3rem 0.6rem; border-radius: 6px; letter-spacing: 0.5px; font-family: 'Plus Jakarta Sans', monospace; }
+.col-email { font-weight: 600; color: var(--text-muted); }
+
+/* 3. FIX ALIGNMENT "JENIS AKAUN" */
+.col-jenis-akaun { text-align: center !important; vertical-align: middle !important; }
+.badge-role { display: inline-block; margin: 0 auto; }
+
+/* 4. STATUS LED BERKELIP */
+.status-success { color: #9D4EDD; font-weight: 800; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+.status-success::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background-color: #10b981; box-shadow: 0 0 5px rgba(16, 185, 129, 0.5); }
+.status-failed { color: #DC2626; font-weight: 800; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.4rem; }
+.status-failed::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background-color: #EF4444; box-shadow: 0 0 5px rgba(239, 68, 68, 0.5); }
+
+/* 5. PAGINATION (MUKA SURAT) */
+.pagination-wrapper { margin-top: 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 1.5rem; }
+.pagination-text { font-size: 0.85rem; font-weight: 600; color: var(--text-muted); }
+.pagination-actions { display: flex; gap: 0.4rem; }
+.btn-paginate { padding: 0.4rem 0.8rem; border: 1px solid var(--border-color); background: white; border-radius: 8px; cursor: pointer; font-family: inherit; font-weight: 700; font-size: 0.85rem; color: var(--text-muted); transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+.btn-paginate:hover { border-color: var(--primary); color: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 240, 255, 0.08); }
+.btn-paginate.active { background: var(--primary); color: white; border-color: var(--primary); box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2); }
+
+
+
+/* ==========================================
+   SWEETALERT2 CUSTOM THEME (MORPHO.ID)
+   ========================================== */
+.swal2-popup {
+    background: #0B132B !important;
+    border: 1px solid rgba(0, 240, 255, 0.3) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15) !important;
+}
+
+.swal2-title {
+    color: #00F0FF !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-html-container {
+    color: #8AA2B8 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-confirm {
+    background: #00F0FF !important;
+    color: #050914 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    border: 1px solid #00F0FF !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-confirm:hover {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4) !important;
+}
+
+.swal2-cancel {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border: 1px solid #EF4444 !important;
+    color: #EF4444 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-cancel:hover {
+    background: #EF4444 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #EAB308 !important;
+    color: #EAB308 !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #00F0FF !important;
+    color: #00F0FF !important;
+}

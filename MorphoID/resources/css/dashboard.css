@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-color: #050914;       /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-color);
+    margin: 0;
+    color: var(--text-main);
+}
+
+.top-navbar {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-color);
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-content h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.05em;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: tracking-in-expand 1.2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both, fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+    letter-spacing: -0.05em;
+  }
+}
+
+.nav-content h1 span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.admin-badge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.btn-logout {
+    background: #fef2f2;
+    color: #ef4444;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.5rem 1rem;
+    border-radius: 0.75rem;
+    transition: background 0.2s;
+}
+
+.btn-logout:hover {
+    background: #fee2e2;
+}
+
+.dashboard-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+}
+
+.dashboard-header h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 0.25rem 0;
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin: 0 0 2rem 0;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 2rem;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Holographic Laser Sweep */
+.stat-card::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.4);
+    animation: laserSweep 4s linear infinite;
+    pointer-events: none;
+}
+
+.stat-icon {
+    font-size: 1.5rem;
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--primary);
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.stat-card h3 {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin: 0 0 0.5rem 0;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.status-online {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.action-menu h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.action-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.action-box {
+    display: block;
+    padding: 2rem;
+    border-radius: 2rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Holographic Laser Sweep for Action Box */
+.action-box::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+    box-shadow: 0 0 15px 5px rgba(157, 78, 221, 0.4);
+    animation: laserSweep 5s linear infinite;
+    pointer-events: none;
+}
+
+.primary-action {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.1);
+}
+
+.primary-action h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--primary);
+}
+
+.primary-action p {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.primary-action:hover {
+    background: rgba(0, 240, 255, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.secondary-action {
+    border: 1px dashed var(--secondary);
+}
+
+.secondary-action h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.25rem;
+    color: var(--secondary);
+}
+
+.secondary-action p {
+    color: var(--text-muted);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.secondary-action:hover {
+    border-color: var(--primary);
+    background: rgba(157, 78, 221, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(157, 78, 221, 0.2);
+}
+/* ==========================================
+   BUTANG LOG KELUAR (LOGOUT)
+   ========================================== */
+.btn-logout {
+    color: #ffffff; /* Teks warna putih */
+    background-color: transparent; /* Latar belakang lutsinar */
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Garis luar putih pudar sikit */
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px; /* Bentuk pill (bujur) */
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-logout:hover {
+    background-color: #EF4444; /* Bertukar merah (Red-500) bila hover */
+    border-color: #EF4444; /* Garis luar pun jadi merah */
+    color: #ffffff; /* Teks kekal putih */
+    transform: translateY(-2px); /* Timbul sikit ke atas */
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); /* Ada glow merah lembut kat bawah */
+}
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes sonarPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+}
+
+@keyframes laserSweep {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+.global-bg-watermark {
+    display: none; /* Hide watermark entirely for Sci-Fi theme */
+}
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+/* ==========================================
+   SWEETALERT2 CUSTOM THEME (MORPHO.ID)
+   ========================================== */
+.swal2-popup {
+    background: #0B132B !important;
+    border: 1px solid rgba(0, 240, 255, 0.3) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15) !important;
+}
+
+.swal2-title {
+    color: #00F0FF !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-html-container {
+    color: #8AA2B8 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-confirm {
+    background: #00F0FF !important;
+    color: #050914 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    border: 1px solid #00F0FF !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-confirm:hover {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4) !important;
+}
+
+.swal2-cancel {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border: 1px solid #EF4444 !important;
+    color: #EF4444 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-cancel:hover {
+    background: #EF4444 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #EAB308 !important;
+    color: #EAB308 !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #00F0FF !important;
+    color: #00F0FF !important;
+}

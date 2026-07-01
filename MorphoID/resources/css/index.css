@@ -1,0 +1,516 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #080C17; /* Sedikit berbeza dari #050914 (Login) */
+    background-image: 
+        radial-gradient(circle at 15% 10%, rgba(0, 240, 255, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(157, 78, 221, 0.08) 0%, transparent 40%);
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* ==========================================
+   NAVBAR & MENU NAVIGASI (PREMIUM)
+    background: rgba(5, 9, 20, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.15);
+}
+
+.navbar-admin {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    background: rgba(5, 9, 20, 0.4);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5); 
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    opacity: 0.5;
+}
+
+.navbar .logo {
+    font-weight: 800;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+
+.navbar .logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.nav-item::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--primary);
+    border-radius: 2px;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.nav-item:hover::after, .nav-item.active::after {
+    width: 100%;
+}
+
+.nav-item.active {
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+.nav-divider {
+    width: 1px;
+    height: 24px;
+    background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3), transparent);
+    margin: 0 0.5rem;
+}
+
+/* Butang Pengurusan (Premium Glow) */
+.btn-manage {
+    background: linear-gradient(135deg, rgba(0, 240, 255, 0.1), rgba(0, 180, 255, 0.05));
+    color: var(--primary);
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    padding: 0.6rem 1.4rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.05);
+}
+
+.btn-manage:hover {
+    background: var(--primary);
+    color: #050914;
+    border-color: var(--primary);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+}
+
+.btn-manage svg {
+    transition: transform 0.3s ease;
+}
+
+.btn-manage:hover svg {
+    transform: rotate(15deg) scale(1.1);
+}
+/* Container Utama Banner */
+.hero-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    padding: 1rem 4rem;
+    margin: 2rem 5%;
+    color: white;
+    box-shadow: 0 10px 20px -5px rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden; 
+}
+
+/* Layer Gambar Bangunan Kat Belakang */
+.banner-bg {
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    background-image: url('https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/natey/Bangunan-Suluh-Budiman2-1024x686-1.jpeg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15; /* Laras OPACITY kat sini. Lagi besar nilai, lagi jelas bangunan */
+    mix-blend-mode: overlay; /* Ni rahsia nak bagi gambar tu sebati dengan warna merah */
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Susunan Teks Kiri */
+.hero-content {
+    position: relative;
+    z-index: 2; /* Letak atas background */
+    max-width: 60%;
+}
+
+.welcome-text {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 700;
+    opacity: 0.8;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.greeting {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 0 0 0.2rem 0;
+}
+
+/* Design Label Peranan (Role) */
+.role-badge {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    backdrop-filter: blur(5px);
+}
+
+.subtitle {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 1.5rem;
+}
+
+.btn-action {
+    display: inline-block;
+    background-color: white;
+    color: #991b1b;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.btn-action:hover {
+    background-color: #f3f4f6;
+    transform: translateY(-2px);
+}
+
+/* =========================================
+   KOTAK PUTIH LOGO (BAHAGIAN KANAN)
+========================================= */
+.hero-image {
+    position: relative;
+    z-index: 2;
+}
+
+.white-logo-card {
+    background: rgba(255, 255, 255, 0.85); /* Putih tapi lutsinar sikit */
+    backdrop-filter: blur(10px);
+    padding: 1.5rem 3rem;
+    border-radius: 16px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    transform: rotate(2deg);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.white-logo-card img {
+    height: 80px;
+    object-fit: contain;
+}
+
+/* Titik Merah Kat Bawah Kanan */
+.red-dot {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    width: 12px;
+    height: 12px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    border: 2px solid var(--bg-main);
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* Responsif Fon */
+@media (max-width: 768px) {
+    .hero-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    .hero-content {
+        max-width: 100%;
+        margin-bottom: 2rem;
+    }
+    .white-logo-card {
+        transform: rotate(0deg);
+    }
+}
+
+/* ==========================================
+   HERO SECTION
+   ========================================== */
+.hero-section {
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 4rem;
+    padding: 0 1rem;
+}
+
+.hero-section h1 {
+    color: var(--primary);
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.hero-section p {
+    color: #E2E8F0; /* Cerahkan teks supaya lebih jelas */
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.6;
+    margin: 0;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Tambah shadow supaya timbul */
+}
+
+/* ==========================================
+   KAD KATALOG CONTAINER
+   ========================================== */
+.katalog-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 2rem 5rem 2rem;
+    max-width: 1300px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.katalog-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 1.5rem;
+    padding: 2.5rem;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 10px 15px -3px rgba(0, 240, 255, 0.1);
+    color: white;
+    border: 1px solid var(--border-color); 
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Holographic Laser Sweep */
+.katalog-card::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.4);
+    animation: laserSweep 5s linear infinite;
+    pointer-events: none;
+}
+
+.katalog-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 240, 255, 0.3);
+    border-color: var(--accent);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    font-size: 1.5rem;
+}
+
+/* Update warna ikon supaya match tema */
+.icon-bio { background: var(--bg-main); color: var(--primary); }
+.icon-chem { background: #E8F0FE; color: var(--secondary); }
+
+.header-text h2 {
+    margin: 0 0 0.2rem 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: #ffffff !important; /* Paksa jadi putih */
+}
+
+.header-text span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7) !important; /* Putih pudar */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* ==========================================
+   ITEM DALAM KAD (Sub-kategori)
+   ========================================== */
+.kategori-item {
+    background: rgba(11, 19, 43, 0.9) !important; 
+    color: var(--primary) !important; 
+    border: 1px solid rgba(0, 240, 255, 0.2) !important;
+    padding: 1.2rem;
+    border-radius: 0.8rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.kategori-item:hover {
+    background: var(--primary) !important;
+    color: #000000 !important; 
+    border-color: var(--accent) !important; 
+    box-shadow: 0 8px 20px rgba(0, 240, 255, 0.4); 
+    transform: translateY(-3px);
+}
+
+.item-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.item-grid {
+    border: 1px solid var(--accent);
+}
+
+/* Warna untuk mesej GAGAL/ERROR */
+.alert-error {
+    background-color: #FFFFFF;
+    color: #DC2626;
+    border: 1px solid #EF4444;
+}
+
+/* Animasi turun dari atas */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.global-bg-watermark {
+    display: none;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes laserSweep {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* Category & Specimen Links styling */
+.Category-item {
+    color: #e2e8f0 !important;
+    text-decoration: none !important;
+    font-weight: 600;
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.05) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.Category-item:hover {
+    background: rgba(0, 240, 255, 0.1) !important;
+    border-color: #00F0FF !important;
+    color: #ffffff !important;
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.2);
+}
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+

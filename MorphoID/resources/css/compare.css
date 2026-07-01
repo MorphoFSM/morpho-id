@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* ==========================================
+   NAVBAR ATAS (DEEP TEAL)
+   ========================================== */
+.compare-header {
+    background: rgba(5, 9, 20, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 10;
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1); 
+}
+
+.logo {
+    font-weight: 800;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+.logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+.badge-mode {
+    background: var(--card-bg);
+    color: var(--primary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    border: 1px solid var(--border-color);
+    letter-spacing: 0.5px;
+}
+
+.btn-close-compare {
+    background: transparent;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.btn-close-compare:hover {
+    background: #ef4444;
+    color: #ffffff;
+    border-color: #ef4444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3);
+}
+
+/* ==========================================
+   KAWASAN PERBANDINGAN (PANEL KIRI & KANAN)
+   ========================================== */
+.compare-area { display: flex; flex: 1; position: relative; overflow-y: auto; }
+.panel { flex: 1; padding: 2rem 3rem; }
+.panel-left { background: rgba(11, 19, 43, 0.4); border-right: 1px solid var(--border-color); backdrop-filter: blur(8px); }
+.panel-right { background: var(--bg-main); }
+
+/* VS Badge Tengah */
+.vs-badge {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg-main);
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--primary);
+    font-size: 1rem;
+    z-index: 5;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+}
+
+/* ==========================================
+   ELEMEN SPESIMEN
+   ========================================== */
+.specimen-img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+.cat-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: block;
+}
+.specimen-name {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: -0.5px;
+}
+.specimen-desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+/* ==========================================
+   SENARAI SUB-SPESIMEN (GAYA KOTAK BARU)
+   ========================================== */
+.sub-spesimen-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 2rem;
+}
+
+.sub-item-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.sub-item-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(8px);
+}
+
+/* Efek Hover untuk Kotak Sub-Spesimen */
+.sub-item-link:hover .sub-item-card {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+    transform: translateX(5px);
+    color: var(--primary);
+}
+
+.sub-badge {
+    background-color: rgba(0, 240, 255, 0.2);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.sub-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+}
+
+/* ==========================================
+   ELEMEN KHAS PERBANDINGAN (TAGS & TITLE)
+   ========================================== */
+.tag-compare {
+    display: inline-block;
+    background: rgba(0, 240, 255, 0.1); 
+    color: var(--primary); 
+    padding: 0.3rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid var(--border-color);
+}
+
+/* Trik: Tag kat panel kanan */
+.panel-right .tag-compare {
+    background: rgba(157, 78, 221, 0.1); /* Purple tint untuk perbandingan kanan */
+    color: var(--secondary);
+    border-color: rgba(157, 78, 221, 0.3);
+}
+
+.compare-section-title {
+    font-size: 0.85rem;
+    color: var(--text-muted); /* Kelabu/Hijau lembut */
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+/* ==========================================
+   BREADCRUMBS (JEJAK NAVIGASI FLOW)
+   ========================================== */
+.breadcrumb-container {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+/* Paksa buang warna biru dan garis bawah Bootstrap */
+.crumb-link {
+    color: var(--primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+/* Buang underline masa hover, focus, dan klik */
+.crumb-link:hover,
+.crumb-link:focus,
+.crumb-link:active {
+    color: var(--accent) !important; /* Bertukar terang sikit bila mouse lalu */
+    text-decoration: none !important;
+}
+
+.crumb-separator {
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
+
+.panel {
+    z-index: 1; /* letak panel atas particle */
+}
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+

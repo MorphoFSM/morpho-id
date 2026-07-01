@@ -1,0 +1,957 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+
+
+body {
+
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
+    /* Guna warna solid Soft Mint, lebih profesional untuk Admin Dashboard berbanding gradient */
+
+    background-color: var(--bg-main);
+
+    background: var(--bg-main);
+    color: var(--text-main);
+    overflow-x: hidden;
+    margin: 0;
+
+    min-height: 100vh;
+
+}
+
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+
+
+/* NAVBAR */
+
+.navbar-admin {
+
+    background: rgba(5, 9, 20, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    padding: 1.2rem 4rem;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    border-bottom: 1px solid var(--border-color);
+
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+}
+
+
+
+/* Logo jadi putih */
+
+.logo {
+    font-weight: 800;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+
+.logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; } /* Titik guna warna Teal Cerah */
+
+
+
+.navbar-menu { display: flex; gap: 2rem; align-items: center; }
+
+
+
+/* Teks menu jadi putih pudar sikit */
+
+.nav-item {
+
+    text-decoration: none;
+
+    font-weight: 600;
+
+    color: rgba(255, 255, 255, 0.8);
+
+    font-size: 0.95rem;
+
+    transition: 0.2s ease;
+
+}
+
+.nav-item:hover { color: #ffffff; }
+
+
+
+/* Butang Manage/Kembali terbalikkan warna (Putih + Teks Teal) */
+
+.btn-manage {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+
+
+.btn-manage:hover {
+    background-color: #ffffff;
+    color: #9D4EDD;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* MAIN CONTAINER */
+
+.admin-container {
+
+    max-width: 60%;
+
+    margin: 0 auto;
+
+    padding: 4rem 2rem;
+
+}
+
+
+
+/* HEADER & BUTTON */
+
+.page-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: flex-end;
+
+    margin-bottom: 3rem;
+
+}
+
+.page-header h1 { font-size: 2rem; font-weight: 800; margin: 0 0 0.5rem 0; letter-spacing: -1px; color: var(--text-main); }
+
+.page-header p { margin: 0; color: var(--text-muted); }
+
+
+
+.btn-tambah-utama {
+
+    background: linear-gradient(135deg, #00F0FF 0%, #9D4EDD 100%);
+
+    color: var(--card-bg);
+
+    border: none;
+
+    padding: 0.8rem 1.5rem;
+
+    border-radius: 8px;
+
+    font-weight: 600;
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2);
+
+}
+
+.btn-tambah-utama:hover { background-color: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 240, 255, 0.3); }
+
+
+
+/* TABLES */
+.table-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 2.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Holographic Laser Sweep */
+.table-card::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.4);
+    animation: laserSweep 5s linear infinite;
+    pointer-events: none;
+}
+
+.table-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text-main);
+}
+
+
+.data-table { width: 100%; border-collapse: collapse; }
+
+/* 2. BERSIHKAN HEADER (Buang text-align yang berterabur) */
+.data-table th {
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.data-table td {
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.col-name { font-weight: 600; color: var(--text-main); }
+
+.data-table th:nth-child(1),
+.data-table td:nth-child(1) {
+    width: 40%;
+    text-align: left;
+    padding-left: 1rem;
+}
+/* KOLUM 2: Status/Kategori (Tengah) */
+.data-table th:nth-child(2),
+.data-table td:nth-child(2) {
+    width: 25%;
+    text-align: center;
+}
+
+/* KOLUM 3: Tindakan (Kanan) */
+.data-table th:nth-child(3),
+.data-table td:nth-child(3) {
+    width: 35%;
+    text-align: right;
+    padding-right: 1rem;
+}
+
+.tag { padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.5px; }
+
+.tag-induk { background: var(--primary); color: var(--card-bg); }
+
+.tag-sub { background: var(--bg-main); color: var(--primary-hover); border: 1px solid var(--border-color); }
+
+.tag-specimen { border: 1px solid var(--border-color); color: var(--text-muted); }
+
+
+
+/* BUTTONS IN TABLE */
+
+/* ==========================================
+
+   PEMBETULAN ALIGNMENT & BUTANG TINDAKAN
+
+   ========================================== */
+
+/* 1. Paksa ruangan tindakan sejajar ke kanan dan center tegak */
+
+.col-action {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 1.2rem; /* Jarak ngam-ngam antara butang */
+
+    text-align: right !important; /* Paksa semua isi pergi kanan */
+    white-space: nowrap;
+
+}
+
+
+
+/* Hilangkan margin asal form supaya butang tak lari atas bawah */
+
+.col-action form {
+
+    margin: 0;
+
+    display: flex;
+
+    align-items: center;
+
+}
+
+
+
+/* 2. Makeup Butang "Lihat Spesimen" (Sama style dengan Pilih Kategori) */
+
+.btn-lihat-anak {
+
+    background-color: var(--bg-main);
+
+    color: var(--primary);
+
+    border: 1px solid var(--border-color);
+
+    padding: 0.4rem 1rem;
+
+    border-radius: 50px;
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    text-decoration: none !important; /* Paksa hilang underline */
+
+    display: inline-flex;
+
+    align-items: right;
+
+    gap: 0.3rem;
+    text-align: right;
+
+}
+
+
+
+.btn-lihat-anak:hover {
+
+    background-color: var(--primary);
+
+    color: #ffffff;
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2);
+
+}
+
+
+
+/* 3. Bersihkan Butang Edit & Padam (Tiada Underline) */
+
+.btn-action {
+
+    background: none;
+
+    border: none;
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    padding: 0;
+
+    text-decoration: none !important; /* Ini yang bunuh underline tu */
+
+}
+
+
+
+.btn-edit { color: var(--text-muted); }
+
+.btn-edit:hover { color: var(--accent); }
+
+
+
+.btn-delete { color: #ef4444; text-align: right; }
+
+.btn-delete:hover { color: #b91c1c; }
+
+
+
+/* ====================================
+
+   MODAL POPUP STYLES
+
+==================================== */
+
+.modal-overlay {
+
+    position: fixed;
+
+    top: 0; left: 0; width: 100%; height: 100%;
+
+    background: rgba(11, 19, 43, 0.4); /* Overlay gelap dengan tone teal */
+
+    backdrop-filter: blur(4px);
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    z-index: 100;
+
+}
+
+
+
+.modal-box {
+
+    background: var(--card-bg);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    width: 100%;
+
+    max-width: 550px;
+
+    border-radius: 16px;
+
+    box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.25);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    border: 1px solid var(--border-color);
+
+}
+
+
+
+.modal-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 1.5rem 2rem;
+
+    border-bottom: 1px solid var(--border-color);
+
+}
+
+.modal-header h2 { margin: 0; font-size: 1.2rem; font-weight: 700; color: var(--text-main); }
+
+.btn-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-muted); transition: 0.2s; }
+
+.btn-close:hover { color: #ef4444; transform: rotate(90deg); }
+
+
+
+.modal-body { padding: 2rem; }
+
+
+
+/* FORM INSIDE MODAL */
+
+.input-group { margin-bottom: 1.5rem; }
+
+.input-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+.input-group input[type="text"], .input-group textarea, .file-input {
+
+    width: 100%; padding: 0.8rem 1rem; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; font-size: 0.95rem; box-sizing: border-box; background: var(--bg-main); color: var(--text-main); transition: 0.3s ease;
+
+}
+
+.input-group input:focus, .input-group textarea:focus { outline: none; border-color: var(--primary); background: var(--card-bg); box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1); }
+
+
+
+/* GRID CATEGORY RADIO */
+
+.category-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+
+.cat-btn input { display: none; }
+
+.cat-box { display: block; padding: 0.8rem; border: 1px solid var(--border-color); border-radius: 8px; text-align: center; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); cursor: pointer; transition: 0.2s; background: var(--bg-main); }
+
+.cat-btn input:checked + .cat-box { border-color: var(--primary); background: var(--primary); color: var(--card-bg); box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2); }
+
+.box-add { border-style: dashed; color: var(--primary); background: transparent; border-color: var(--primary); }
+
+.box-add:hover { background: var(--bg-main); }
+
+
+
+.hidden-input-box { display: none; margin-top: 0.8rem; }
+
+
+
+/* MODAL FOOTER */
+
+.modal-footer {
+
+    display: flex; justify-content: flex-end; gap: 1rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color);
+
+}
+
+.btn-batal { background: none; border: none; font-weight: 600; color: var(--text-muted); cursor: pointer; padding: 0.8rem 1.5rem; border-radius: 8px; transition: 0.2s; }
+
+.btn-batal:hover { background: #fef2f2; color: #991b1b; } /* Merah sikit bila nak batal */
+
+.btn-simpan { background: linear-gradient(135deg, #00F0FF 0%, #9D4EDD 100%); color: var(--card-bg); border: none; font-weight: 600; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer; transition: 0.2s; box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2); }
+
+.btn-simpan:hover { background: var(--primary-hover); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0, 240, 255, 0.3); }
+
+
+
+/* ALERTS */
+
+.alert { padding: 1rem; border-radius: 8px; margin-bottom: 2rem; font-size: 0.9rem; font-weight: 500; }
+
+.alert-success { background: #E8F5E9; color: #1B5E20; border: 1px solid #C8E6C9; }
+
+.alert-error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; }
+
+/* Butang Pilih Kategori (Premium Pill Design) */
+
+.btn-lihat-kategori {
+
+    background-color: var(--bg-main); /* Latar Mint cair */
+
+    color: var(--primary); /* Teks Deep Teal */
+
+    border: 1px solid var(--border-color);
+
+    padding: 0.4rem 1.2rem;
+
+    border-radius: 50px; /* Bentuk bujur (pill) */
+
+    font-family: inherit;
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.5rem; /* Jarak antara teks dan ikon panah */
+
+}
+
+
+
+.btn-lihat-kategori:hover {
+
+    background-color: var(--primary); /* Tukar jadi Deep Teal */
+
+    color: #ffffff; /* Teks jadi putih */
+
+    border-color: var(--primary);
+
+    transform: translateY(-2px); /* Timbul sikit */
+
+    box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2); /* Glow teal */
+
+}
+
+
+
+/* Animasi panah gerak sikit bila hover */
+
+.btn-lihat-kategori:hover .panah {
+
+    transform: translateX(3px);
+
+}
+
+.panah {
+
+    transition: transform 0.3s ease;
+
+}
+
+/* ==========================================
+
+   BUTANG LOG KELUAR (LOGOUT)
+
+   ========================================== */
+
+.btn-logout {
+
+    color: #ffffff; /* Teks warna putih */
+
+    background-color: transparent; /* Latar belakang lutsinar */
+
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Garis luar putih pudar sikit */
+
+    padding: 0.5rem 1.2rem;
+
+    border-radius: 50px; /* Bentuk pill (bujur) */
+
+    font-weight: 600;
+
+    font-size: 0.9rem;
+
+    text-decoration: none;
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+}
+
+
+
+.btn-logout:hover {
+
+    background-color: #EF4444; /* Bertukar merah (Red-500) bila hover */
+
+    border-color: #EF4444; /* Garis luar pun jadi merah */
+
+    color: #ffffff; /* Teks kekal putih */
+
+    transform: translateY(-2px); /* Timbul sikit ke atas */
+
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); /* Ada glow merah lembut kat bawah */
+
+}
+
+/* ==========================================
+
+   KOTAK INPUT TAG & BUTANG TAMBAH
+
+   ========================================== */
+
+/* Susun input dan butang sebaris dengan kemas */
+
+.tag-input-wrapper {
+
+    display: flex;
+
+    gap: 0.5rem; /* Jarak sikit antara kotak dan butang */
+
+    align-items: stretch; /* Pastikan tinggi butang sama dengan tinggi kotak input */
+
+}
+
+
+
+/* Biar kotak input ambil semua baki ruang yang ada */
+
+.tag-input-wrapper input {
+
+    flex: 1;
+
+}
+
+
+
+/* Makeup Butang Tambah */
+
+.btn-tambah-tag {
+
+    background: linear-gradient(135deg, #00F0FF 0%, #9D4EDD 100%); /* Guna warna Deep Teal */
+
+    color: #ffffff;
+
+    border: none;
+
+    padding: 0 1.5rem;
+
+    border-radius: 8px; /* Lengkung sama macam kotak input */
+
+    font-family: inherit;
+
+    font-weight: 700;
+
+    font-size: 0.9rem;
+
+    cursor: pointer;
+
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    box-shadow: 0 4px 6px rgba(0, 240, 255, 0.15); /* Bayang lembut */
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    white-space: nowrap; /* Elak teks butang terpotong ke bawah */
+
+}
+
+
+
+/* Efek bila mouse lalu atas butang (Hover) */
+
+.btn-tambah-tag:hover {
+
+    background-color: var(--primary-hover);
+
+    transform: translateY(-2px); /* Timbul sikit */
+
+    box-shadow: 0 6px 12px rgba(0, 240, 255, 0.25);
+
+}
+
+
+
+/* Efek bila butang ditekan (Active) */
+
+.btn-tambah-tag:active {
+
+    transform: translateY(0);
+
+    box-shadow: 0 2px 4px rgba(0, 240, 255, 0.1);
+
+}
+
+
+
+/* ==========================================
+
+   KOTAK UPLOAD GAMBAR CUSTOM
+
+   ========================================== */
+
+/* Sorokkan butang hodoh asal sepenuhnya */
+
+/* ==========================================
+
+   DIRECT STYLE UNTUK INPUT FILE (HIJAU)
+
+   ========================================== */
+
+
+
+/* 1. Adjust tulisan "No file chosen" kat sebelah butang */
+
+.file-input {
+
+    font-family: inherit;
+
+    font-size: 0.9rem;
+
+    color: var(--text-muted); /* Warna kelabu lembut */
+
+    cursor: pointer;
+
+    outline: none;
+
+}
+
+
+
+/* 2. Warnakan butang "Choose File" jadi Hijau Deep Teal */
+
+.file-input::file-selector-button {
+
+    background-color: var(--primary); /* Warna hijau tema kau */
+
+    color: #ffffff;
+
+    padding: 0.5rem 1.2rem;
+
+    border-radius: 6px;
+
+    border: none;
+
+    font-weight: 600;
+
+    font-size: 0.85rem;
+
+    cursor: pointer;
+
+    margin-right: 1rem; /* Jarak sikit dengan nama fail */
+
+    transition: all 0.2s ease;
+
+    box-shadow: 0 2px 4px rgba(0, 240, 255, 0.2);
+
+}
+
+
+
+/* 3. Efek bila mouse lalu atas butang (Hover) */
+
+.file-input::file-selector-button:hover {
+
+    background-color: var(--primary-hover);
+
+    transform: translateY(-1px);
+
+    box-shadow: 0 4px 8px rgba(0, 240, 255, 0.3);
+
+}
+
+.global-bg-watermark {
+
+    position: fixed;
+
+    top: 50%;
+
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 400%;
+
+    max-width: 100%;
+
+    height: auto;
+
+    object-fit: contain;
+
+    opacity: 0.05;
+
+    z-index: 0;
+
+    pointer-events: none;
+
+}
+btn-submit-dark{
+    background: linear-gradient(135deg, #00F0FF 0%, #9D4EDD 100%);
+    color: #ffffff;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px; /* Boleh tukar ke 50px kalau nak bentuk bujur/pill */
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 10px rgba(2, 44, 34, 0.2);
+    margin-top: 0.5rem; /* Jarakkan sikit dari teks kat atas */
+}
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+/* ==========================================
+   SWEETALERT2 CUSTOM THEME (MORPHO.ID)
+   ========================================== */
+.swal2-popup {
+    background: #0B132B !important;
+    border: 1px solid rgba(0, 240, 255, 0.3) !important;
+    border-radius: 12px !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15) !important;
+}
+
+.swal2-title {
+    color: #00F0FF !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-html-container {
+    color: #8AA2B8 !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
+
+.swal2-confirm {
+    background: #00F0FF !important;
+    color: #050914 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    border: 1px solid #00F0FF !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-confirm:hover {
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.4) !important;
+}
+
+.swal2-cancel {
+    background: rgba(239, 68, 68, 0.1) !important;
+    border: 1px solid #EF4444 !important;
+    color: #EF4444 !important;
+    border-radius: 8px !important;
+    font-weight: 700 !important;
+    padding: 0.6rem 1.5rem !important;
+    transition: all 0.3s ease !important;
+}
+.swal2-cancel:hover {
+    background: #EF4444 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.4) !important;
+}
+
+.swal2-icon.swal2-warning {
+    border-color: #EAB308 !important;
+    color: #EAB308 !important;
+}
+
+.swal2-icon.swal2-success {
+    border-color: #00F0FF !important;
+    color: #00F0FF !important;
+}

@@ -1,0 +1,473 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    margin: 0;
+    color: var(--text-main);
+    min-height: 100vh;
+}
+
+/* ==========================================
+   NAVBAR (GRADIENT PREMIUM)
+   ========================================== */
+.navbar {
+    background: rgba(5, 9, 20, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar .logo {
+    font-weight: 800;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+
+.navbar .logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+.navbar-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-item {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+}
+
+.nav-item:hover {
+    color: #ffffff;
+}
+
+.nav-divider {
+    width: 1px;
+    height: 24px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Butang Urus Spesimen (Efek Kaca / Glassmorphism) */
+.btn-manage {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    backdrop-filter: blur(8px);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-manage:hover {
+    background-color: #ffffff;
+    color: #9D4EDD;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Butang Log Keluar (Kaca Merah) */
+.btn-logout {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 0.55rem 1.3rem;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.btn-logout:hover {
+    background-color: #EF4444;
+    border-color: #EF4444;
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+/* ==========================================
+   HEADER
+   ========================================== */
+.page-header {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+.page-header h1 {
+    color: var(--text-main);
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+/* ==========================================
+   CARIAN & TAPISAN (CLEAN)
+   ========================================== */
+.search-filter-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 0 2rem;
+}
+
+.search-bar-container {
+    display: flex;
+    background: var(--card-bg);
+    padding: 0.5rem;
+    border-radius: 50px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 25px rgba(6, 95, 70, 0.04);
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 2rem;
+    transition: all 0.3s ease;
+}
+
+.search-bar-container:focus-within {
+    border-color: var(--accent);
+    box-shadow: 0 10px 25px rgba(52, 211, 153, 0.2);
+}
+
+.search-input {
+    flex: 1;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    background: transparent;
+    color: var(--text-main);
+}
+
+.search-input::placeholder {
+    color: #94A3B8;
+}
+
+.filter-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.8rem;
+    max-width: 800px;
+}
+
+/* TAGS KATEGORI (Gaya Baru) */
+.tag {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 2rem;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.tag:hover {
+    border-color: var(--accent);
+    color: var(--primary);
+    background: #ffffff;
+    box-shadow: 0 4px 8px rgba(52, 211, 153, 0.15);
+    transform: translateY(-2px);
+}
+
+.tag.active {
+    background: linear-gradient(135deg, #050914 0%, #9D4EDD 100%); /* Gradient macam banner */
+    color: white;
+    border: none;
+    box-shadow: 0 4px 10px rgba(6, 95, 70, 0.25);
+}
+
+/* ==========================================
+   KONTENA GRID & KAD SPESIMEN (SOLID WHITE)
+   ========================================== */
+.specimen-grid {
+    padding: 0 3rem 5rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 3rem;
+    background: var(--card-bg);
+    border: 2px dashed var(--border-color);
+    border-radius: 1rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.specimen-card {
+    /* Background Holographic */
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.1); 
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    color: #ffffff;
+    position: relative;
+}
+
+/* Holographic Laser Sweep */
+.specimen-card::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.4);
+    animation: laserSweep 5s linear infinite;
+    pointer-events: none;
+}
+
+.specimen-card:hover {
+    transform: translateY(-10px) translateZ(20px) scale(1.02); /* Quantum Stacked 3D Pop Effect */
+    box-shadow: 0 15px 30px rgba(0, 240, 255, 0.4); 
+    border-color: rgba(0, 240, 255, 0.8);
+    z-index: 10;
+}
+
+/* Khas untuk gambar yang broken atau kosong */
+.specimen-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover; /* Gambar takkan jadi penyek */
+    background-color: #f1f5f9; /* Warna latar kalau gambar tak load */
+}
+
+/* Kalau gambar takde, kita bagi ikon placeholder sikit */
+.specimen-card img[src=""],
+.specimen-card img:not([src]) {
+    content: url('https://placehold.co/400x200?text=No+Image');
+}
+
+.card-content {
+    padding: 1.25rem;
+}
+
+.card-content h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #ffffff !important; /* Putih */
+}
+
+/* Kategori Badge (Gelap & Elegan) */
+.specimen-card .category-badge {
+    display: inline-block !important;
+    font-size: 0.7rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;         /* Putih terang */
+    background: rgba(255, 255, 255, 0.2) !important; /* Latar belakang bagi nampak kaca sikit */
+    padding: 0.35rem 0.6rem !important;
+    border-radius: 6px !important;
+    margin-bottom: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important; /* Tambah border nipis bagi nampak jelas */
+}
+
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+/* Tag kecil kat dalam kad */
+/* Mini tag dalam kad */
+.mini-tag {
+    font-size: 0.7rem;
+    padding: 0.25rem 0.6rem;
+    background: rgba(255, 255, 255, 0.15); /* Putih kabur */
+    color: #ffffff; /* Putih */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.specimen-card:hover .mini-tag {
+    border-color: var(--accent);
+    color: var(--primary);
+}
+
+/* ==========================================
+   MODAL & DROPDOWN DROPDOWN (CHOICES.JS)
+   ========================================== */
+#modalBanding .form-select:focus {
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px rgba(6, 95, 70, 0.2) !important;
+}
+
+#modalBanding button[type="submit"] {
+    background: linear-gradient(135deg, #050914 0%, #9D4EDD 100%) !important;
+    color: white !important;
+    border: none !important;
+    transition: 0.3s ease !important;
+}
+
+#modalBanding button[type="submit"]:hover {
+    background: linear-gradient(135deg, #9D4EDD 0%, #050914 100%) !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 15px rgba(6, 95, 70, 0.3) !important;
+}
+
+#modalBanding .form-select option {
+    background-color: #ffffff !important;
+    color: var(--text-main) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.95rem;
+    padding: 10px 15px !important;
+}
+
+#modalBanding .form-select option:checked {
+    background-color: var(--bg-main) !important;
+    color: var(--primary) !important;
+    font-weight: 700 !important;
+}
+
+/* Makeover Choices.js */
+.choices {
+    margin-bottom: 0;
+}
+.choices__inner {
+    background-color: white !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 0.8rem !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-main);
+    padding: 0.4rem 1.2rem !important;
+}
+.choices[data-type*="select-one"] .choices__inner {
+    padding-bottom: 0.4rem !important;
+}
+.choices.is-focused.is-open .choices__inner {
+    border-color: var(--accent) !important;
+    box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.2) !important;
+}
+.choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: var(--primary) !important;
+    color: white !important;
+}
+.choices__list--dropdown {
+    border-radius: 0.8rem !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 10px 25px rgba(6, 95, 70, 0.15) !important;
+    overflow: hidden;
+}
+
+/* ==========================================
+   BUTANG GELAP / BANDINGKAN (TEAL)
+   ========================================== */
+.btn-dark {
+    background: linear-gradient(135deg, #050914 0%, #9D4EDD 100%);
+    color: white;
+    border: none;
+    padding: 0 1.5rem;
+    border-radius: 40px;
+    font-weight: 600;
+    font-family: inherit;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(6, 95, 70, 0.2);
+}
+
+.btn-dark:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(6, 95, 70, 0.3);
+}
+
+/* WATERMARK */
+.global-bg-watermark {
+    display: none; /* Hide watermark */
+}
+
+/* Particles Container */
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes sonarPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+}
+
+@keyframes laserSweep {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+

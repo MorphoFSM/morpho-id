@@ -1,0 +1,275 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: var(--text-main);
+    position: relative;
+    background-color: var(--bg-main); /* Pastikan warna background sama */
+}
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+@keyframes sonarPulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); }
+    70% { box-shadow: 0 0 0 20px rgba(0, 240, 255, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); }
+}
+
+@keyframes laserSweep {
+    0% { top: -100%; opacity: 0; }
+    50% { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+.logo-wrapper {
+    display: flex;
+    flex-direction: column; /* Ubah logo supaya duduk ATAS tulisan */
+    align-items: center; /* Bagi logo dan teks sejajar tengah */
+    justify-content: center; /* Pusat kan kalau nak tengah */
+    gap: 5px; /* Jarak antara logo dengan perkataan MorphID */
+    margin-bottom: 5px;
+}
+
+.mini-logo {
+    width: 60px; /* Adjusted size for div */
+    height: 45px;
+    margin: 0 auto;
+    background-image: url('https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/natey/MorphoID%20Logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.login-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3rem;
+    border-radius: 2rem;
+    box-shadow: 0 8px 32px 0 rgba(0, 240, 255, 0.15); 
+    width: 100%;
+    max-width: 380px;
+    border: 1px solid var(--border-color);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Holographic Laser Sweep */
+.login-card::after {
+    content: '';
+    position: absolute;
+    top: -100%; left: 0;
+    width: 100%; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    box-shadow: 0 0 15px 5px rgba(0, 240, 255, 0.4);
+    animation: laserSweep 4s linear infinite;
+    pointer-events: none;
+}
+
+.header { margin-bottom: 2.5rem; text-align: center; }
+
+.logo {
+    font-weight: 800;
+    font-size: 1.8rem;
+    margin-bottom: 0.2rem;
+    color: transparent;
+    letter-spacing: -0.5px;
+    background: linear-gradient(270deg, var(--primary), var(--secondary), var(--accent), var(--primary));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    animation: fluidText 5s ease infinite;
+}
+
+.logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.input-group { text-align: left; margin-bottom: 1.5rem; }
+
+.input-group label {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+    display: block;
+    letter-spacing: 0.05em;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 1rem;
+    border: 1.5px solid var(--border-color);
+    border-radius: 1rem;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    background: var(--card-bg);
+    color: var(--text-main);
+}
+
+.input-group input:focus {
+    border-color: var(--primary);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(26, 108, 86, 0.1);
+}
+
+/* ==========================================
+   ROLE SELECTOR
+   ========================================== */
+.role-selector {
+    display: flex;
+    gap: 1rem;
+    background: var(--bg-main);
+    padding: 0.4rem;
+    border-radius: 1rem;
+    border: 1px solid var(--border-color);
+}
+
+.role-btn { flex: 1; position: relative; }
+.role-btn input { display: none; }
+
+.role-box {
+    display: block;
+    padding: 0.7rem;
+    text-align: center;
+    border-radius: 0.8rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: var(--text-muted);
+}
+
+.role-btn input:checked + .role-box {
+    background: var(--card-bg);
+    color: var(--primary);
+    box-shadow: 0 4px 6px rgba(26, 108, 86, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+/* ==========================================
+   BUTTON LOGIN
+   ========================================== */
+.btn-login {
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(90deg, var(--secondary), var(--primary));
+    color: #000;
+    border: none;
+    padding: 1rem;
+    border-radius: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+    margin-top: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sonar-pulse {
+    animation: sonarPulse 2s infinite;
+}
+
+.btn-login:hover {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 240, 255, 0.4);
+}
+
+.footer {
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    text-align: center;
+}
+
+.footer a {
+    color: var(--primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.footer a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+/* ==========================================
+   FORGOT PASSWORD LINK
+   ========================================== */
+.forgot-password-link {
+    display: block;
+    text-align: right;
+    font-size: 0.8rem;
+    color: var(--primary); /* Guna warna hijau utama BioMorph */
+    font-weight: 600;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.forgot-password-link:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* ==========================================
+   PASSWORD TOGGLE
+   ========================================== */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover {
+    color: var(--primary);
+}
+
+

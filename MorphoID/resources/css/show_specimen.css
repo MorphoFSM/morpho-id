@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+    /* Tema "Quantum Biogenesis" - Sci-Fi, Holographic, Deep Abyss */
+    --primary: #00F0FF;        /* Neon Cyan */
+    --primary-hover: #00B4D8;  /* Deep Cyan */
+    --secondary: #9D4EDD;      /* Electric Purple */
+    --accent: #E0AAFF;         /* Soft Glowing Pink/Purple */
+
+    --bg-main: #050914;        /* Sangat Gelap (Pitch Black/Navy) */
+    --card-bg: rgba(11, 19, 43, 0.7); /* Kaca Holografik */
+
+    --text-main: #FFFFFF;      /* Teks Putih Terang */
+    --text-muted: #8AA2B8;     /* Kelabu Kebiruan (Cyber) */
+    --border-color: rgba(0, 240, 255, 0.2); /* Sempadan Cyan Nipis */
+}
+
+/* ==========================================
+   GLOBAL STYLES
+   ========================================== */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-main);
+}
+
+.hover-shadow:hover {
+    box-shadow: 0 10px 20px rgba(26, 108, 86, 0.08);
+    background-color: var(--card-bg);
+}
+
+.transition {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==========================================
+   NAVBAR (TEMA GELAP)
+   ========================================== */
+.navbar-biomorph {
+    background: rgba(5, 9, 20, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1); 
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Warna Teks Logo kat Navbar */
+.logo {
+    font-weight: 800;
+    background: linear-gradient(270deg, #00F0FF, #9D4EDD, #E0AAFF, #00F0FF);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: fluidText 5s ease infinite;
+    filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+}
+.logo span { color: #FF00E5; -webkit-text-fill-color: #FF00E5; text-shadow: 0 0 15px rgba(255, 0, 229, 0.8); background: none; -webkit-background-clip: initial; }
+
+/* Butang dalam Navbar Gelap (Contoh: Kembali / Eksplorasi) */
+.navbar-biomorph a {
+    color: #FFFFFF !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    background-color: transparent !important;
+}
+.navbar-biomorph a:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: #FFFFFF !important;
+}
+
+/* ==========================================
+   BREADCRUMB
+   ========================================== */
+.breadcrumb-custom {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    font-weight: 500;
+}
+
+.breadcrumb-custom a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.breadcrumb-custom a:hover {
+    color: var(--accent);
+}
+
+/* ==========================================
+   GAMBAR FULLSCREEN STYLES
+   ========================================== */
+.specimen-img-wrapper {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: var(--bg-main);
+    overflow: hidden;
+}
+
+.fixed-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.fullscreen-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(11, 36, 28, 0.5); /* Gelap lutsinar */
+    backdrop-filter: blur(8px);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 12px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: 0.3s;
+    z-index: 10;
+}
+
+.fullscreen-btn:hover {
+    background: var(--primary);
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(26, 108, 86, 0.3);
+}
+
+/* ==========================================
+   MODAL PREMIUM & FORM STYLES
+   ========================================== */
+.modal-custom {
+    border-radius: 24px !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 25px 50px -12px rgba(0, 240, 255, 0.25) !important;
+    background: var(--card-bg) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+}
+
+.form-control-lg {
+    border: 2px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem !important;
+    background: var(--bg-main) !important;
+    color: var(--text-main) !important;
+    font-family: inherit !important;
+}
+
+.form-control-lg:focus {
+    outline: none !important;
+    border-color: var(--primary) !important;
+    box-shadow: 0 0 0 4px rgba(26, 108, 86, 0.1) !important;
+    background: var(--card-bg) !important;
+}
+
+.file-upload-box {
+    border: 2px dashed var(--border-color);
+    border-radius: 12px;
+    background: var(--bg-main);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.file-upload-box:hover {
+    border-color: var(--primary);
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 12px rgba(26, 108, 86, 0.05);
+}
+
+.file-upload-box label {
+    cursor: pointer;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin: 0;
+}
+
+.btn-simpan {
+    background: linear-gradient(135deg, #00F0FF 0%, #9D4EDD 100%) !important;
+    color: #050914 !important;
+    border: none !important;
+    padding: 14px !important;
+    border-radius: 12px !important;
+    font-weight: 700 !important;
+    font-family: inherit !important;
+    transition: 0.3s !important;
+    box-shadow: 0 4px 10px rgba(0, 240, 255, 0.2) !important;
+}
+
+.btn-simpan:hover {
+    background: linear-gradient(135deg, #00B4D8 0%, #E0AAFF 100%) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0, 240, 255, 0.4) !important;
+}
+
+/* ==========================================
+   KOTAK TARIKH SPESIMEN
+   ========================================== */
+.timestamp-container {
+    background: var(--card-bg); /* Kotak putih atas latar mint */
+    border: 1px dashed var(--border-color);
+    padding: 1rem 1.2rem;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+
+.time-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.time-item svg {
+    width: 16px;
+    height: 16px;
+    color: var(--primary);
+/* ==========================================
+   BREADCRUMBS (JEJAK NAVIGASI FLOW - ANTI BOOTSTRAP)
+   ========================================== */
+.breadcrumb-container {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+/* Paksa buang warna biru dan garis bawah Bootstrap */
+.breadcrumb-container a.crumb-link {
+    color: var(--primary) !important;
+    text-decoration: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.breadcrumb-container a.crumb-link:hover {
+    color: var(--accent) !important; /* Bertukar terang bila mouse lalu */
+    text-decoration: underline !important;
+}
+
+.crumb-separator {
+    color: var(--text-muted) !important;
+    font-weight: 600;
+}
+
+.crumb-current {
+    color: var(--text-main) !important;
+    font-weight: 800;
+}
+}
+
+.global-bg-watermark {
+    display: none;
+}
+
+#particles-js {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+::placeholder { color: var(--text-muted) !important; opacity: 0.6; }
+
+@keyframes fluidText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
