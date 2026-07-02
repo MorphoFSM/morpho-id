@@ -70,11 +70,11 @@
                         </div>
                     </div>
                     <div class="request-actions">
-                        <form action="{{ route('role_requests.approve', $request->id) }}" method="POST">
+                        <form action="{{ route('admin.role_requests.approve', $request->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn-approve" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Approve this request and make user an Admin?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Approve</button>
                         </form>
-                        <form action="{{ route('role_requests.reject', $request->id) }}" method="POST">
+                        <form action="{{ route('admin.role_requests.reject', $request->id) }}" method="POST">
                             @csrf
                             <button type="submit" class="btn-reject" onclick="event.preventDefault(); Swal.fire({title: 'Confirmation', text: 'Reject this request?', icon: 'warning', showCancelButton: true, confirmButtonColor: '#3085d6', cancelButtonColor: '#d33', confirmButtonText: 'Yes'}).then((result) => { if (result.isConfirmed) { this.closest('form').submit(); } })">Reject</button>
                         </form>
