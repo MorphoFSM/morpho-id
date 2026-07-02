@@ -141,6 +141,9 @@ class RoleRequestController extends Controller
 
         LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'Role Upgraded to Admin', 'created_at' => Carbon::now()]);
 
+        $roleRequest->status = 'approved';
+        $roleRequest->save();
+
         return back()->with('success', "User '{$admin->name}' has been successfully upgraded to Administrator! A verification email has been sent to them.");
     }
 
