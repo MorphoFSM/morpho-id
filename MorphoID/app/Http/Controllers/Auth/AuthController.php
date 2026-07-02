@@ -129,20 +129,26 @@ class AuthController extends Controller
                 'email' => $request->email,
                 'userid' => $request->userid,
                 'institusi' => $request->institusi,
-                'password' => Hash::make($request->password),
-                'email_verified_at' => Carbon::now() // Bypass email
+                'password' => Hash::make($request->password)
             ]);
 
             LoginLog::create([
                 'userid' => $user->userid, 'name' => $user->name, 'email' => $user->email, 'role' => 'User',
-                'status' => 'Success', 'note' => 'Account Registered (Bypass Email)', 'created_at' => Carbon::now()
+                'status' => 'Success', 'note' => 'Account Registered', 'created_at' => Carbon::now()
             ]);
 
+            $hash = sha1($user->email);
+            $verifyLink = url('/verify-email/' . $user->id . '/' . $hash . '/User');
+            Mail::send('auth.register_success', ['Name' => $user->name, 'peranan' => 'User', 'link' => $verifyLink], function($message) use ($user) {
+                $message->to($user->email)->subject('Welcome to MorphoID - Verify Your Email!');
+                $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
+            });
+
             if ($isApi) {
-                return response()->json(['status' => 'success', 'message' => 'User account created successfully!'], 201);
+                return response()->json(['status' => 'success', 'message' => 'User account created! Please check your email.'], 201);
             }
 
-            return redirect('/login')->with('success', 'User account created successfully! You can now log in.');
+            return redirect('/login')->with('success', 'User account created! Please check your email for verification.');
         }
     }
 
