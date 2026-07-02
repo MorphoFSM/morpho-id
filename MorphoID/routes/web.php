@@ -100,3 +100,8 @@ Route::middleware(['auth:admin'])->prefix('admin')->name('admin.')->group(functi
 Route::get('/test-limit', function () { return ini_get('upload_max_filesize'); });
 Route::get('/test-post-limit', function () { return ini_get('post_max_size'); });
 Route::get('/test-db', function () { return env('DB_CONNECTION'); });
+
+Route::get('/clear-cache', function() {
+    \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    return "Cache is cleared successfully! Go back and try again.";
+});
