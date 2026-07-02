@@ -103,5 +103,6 @@ Route::get('/test-db', function () { return env('DB_CONNECTION'); });
 
 Route::get('/clear-cache', function() {
     \Illuminate\Support\Facades\Artisan::call('optimize:clear');
+    \App\Models\Admin::whereNull('admin_key')->whereNull('email_verified_at')->update(['admin_key' => 'PENDING_APPROVAL']);
     return "Cache is cleared successfully! Go back and try again.";
 });

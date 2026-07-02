@@ -50,8 +50,6 @@ class RoleRequestController extends Controller
     {
         try {
             $admin = Admin::where('id', $id)->where('admin_key', 'PENDING_APPROVAL')->firstOrFail();
-            $admin->admin_key = null; // Clear pending flag
-            $admin->save();
 
             $hash = sha1($admin->email);
             $verifyLink = url('/verify-email/' . $admin->id . '/' . $hash . '/Administrator');
@@ -60,6 +58,10 @@ class RoleRequestController extends Controller
                 $message->to($admin->email)->subject('Action Required: Verify Your Administrator Account');
                 $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
             });
+
+            // Hanya save database JIKA email dah berjaya dihantar
+            $admin->admin_key = null; // Clear pending flag
+            $admin->save();
 
             LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'New Admin Approved', 'created_at' => Carbon::now()]);
 
