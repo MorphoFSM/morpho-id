@@ -51,22 +51,14 @@ class RoleRequestController extends Controller
         try {
             $admin = Admin::where('id', $id)->where('admin_key', 'PENDING_APPROVAL')->firstOrFail();
 
-            $hash = sha1($admin->email);
-            $verifyLink = url('/verify-email/' . $admin->id . '/' . $hash . '/Administrator');
-
-            // 1. Cuba hantar email dulu
-            Mail::send('auth.verify_admin_email', ['Name' => $admin->name, 'link' => $verifyLink], function($message) use ($admin) {
-                $message->to($admin->email)->subject('Action Required: Verify Your Administrator Account');
-                $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
-            });
-
-            // 2. Kalau berjaya hantar email tanpa sangkut, baru save database
-            $admin->admin_key = null; // Clear pending flag
+            // BYPASS EMAIL: Terus verify dan generate Admin Key
+            $admin->email_verified_at = Carbon::now();
+            $admin->admin_key = 'ADM-' . strtoupper(Str::random(6));
             $admin->save();
 
-            LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'New Admin Approved', 'created_at' => Carbon::now()]);
+            LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'New Admin Approved (Bypass Email)', 'created_at' => Carbon::now()]);
 
-            return back()->with('success', 'New administrator has been approved! A verification email has been sent to them.');
+            return back()->with('success', "New administrator '{$admin->name}' has been approved! <br><br><b>ADMIN KEY: {$admin->admin_key}</b><br><br>Please copy this key and send it to them. They can now log in.");
         } catch (\Throwable $e) {
             return back()->with('error', 'Error approving admin: ' . $e->getMessage() . ' at ' . $e->getFile() . ':' . $e->getLine());
         }
@@ -112,9 +104,9 @@ class RoleRequestController extends Controller
                 'userid' => $user->userid,
                 'institusi' => $user->institusi,
                 'password' => $user->password,
-                'email_verified_at' => null, // Unverified initially
+                'email_verified_at' => Carbon::now(),
                 'avatar' => $user->avatar,
-                'admin_key' => null // Key generated upon verification
+                'admin_key' => 'ADM-' . strtoupper(Str::random(6))
             ]);
         } else {
             // Sync the existing admin record with the user's current data
@@ -122,26 +114,17 @@ class RoleRequestController extends Controller
             $admin->institusi = $user->institusi;
             $admin->password = $user->password;
             $admin->avatar = $user->avatar;
-            $admin->email_verified_at = null; // Require verification again
-            $admin->admin_key = null; // Clear key until verified
+            $admin->email_verified_at = Carbon::now();
+            $admin->admin_key = 'ADM-' . strtoupper(Str::random(6));
             $admin->save();
         }
         
         // Move the user data by deleting the old user record
         $user->delete();
 
-        // 1. Cuba hantar email dulu
-        $hash = sha1($admin->email);
-        $verifyLink = url('/verify-email/' . $admin->id . '/' . $hash . '/Administrator');
+        LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'Role Upgraded to Admin (Bypass Email)', 'created_at' => Carbon::now()]);
 
-        Mail::send('auth.verify_admin_email', ['Name' => $admin->name, 'link' => $verifyLink], function($message) use ($admin) {
-            $message->to($admin->email)->subject('Action Required: Verify Your Administrator Upgrade');
-            $message->replyTo(env('MAIL_FROM_ADDRESS', 'morpho.id.fsm@gmail.com'), env('MAIL_FROM_NAME', 'MorphoID'));
-        });
-
-        LoginLog::create(['userid' => $admin->userid, 'name' => $admin->name, 'email' => $admin->email, 'role' => 'Administrator', 'status' => 'Success', 'note' => 'Role Upgraded to Admin', 'created_at' => Carbon::now()]);
-
-        return back()->with('success', "User '{$admin->name}' has been successfully upgraded to Administrator! A verification email has been sent to them.");
+        return back()->with('success', "User '{$admin->name}' has been successfully upgraded to Administrator! <br><br><b>ADMIN KEY: {$admin->admin_key}</b><br><br>Please copy this key and send it to them.");
     }
 
     public function reject($id)
