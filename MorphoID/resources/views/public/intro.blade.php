@@ -133,7 +133,7 @@
             <h2>Work-Based Learning (WBL)</h2>
             <p>Work-Based Learning (WBL) programme overview and information.</p>
         </div>
-        <div class="scroll-reveal wbl-info-card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(164, 198, 57, 0.3); border-radius: 12px; padding: 2.5rem; margin-top: 2rem; backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(164, 198, 57, 0.1); transition: all 0.3s ease;">
+        <div class="scroll-reveal wbl-info-card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(0, 240, 255, 0.3); border-radius: 12px; padding: 2.5rem; margin-top: 2rem; backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(0, 240, 255, 0.1); transition: all 0.3s ease;">
             <p style="font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: center; margin-bottom: 0;">
                 The <strong>Work-Based Learning (WBL)</strong> programme is an innovative educational approach that integrates academic learning at the university with real-world industry experience. Through this programme, students are exposed to professional working environments, allowing them to develop practical skills, industry networks, and hands-on competencies that align closely with current industry demands. By bridging the gap between theory and practice, WBL ensures graduates are highly employable and industry-ready.
             </p>
