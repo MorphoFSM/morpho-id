@@ -133,8 +133,8 @@
             <h2>Work-Based Learning (WBL)</h2>
             <p>Work-Based Learning (WBL) programme overview and information.</p>
         </div>
-        <div class="scroll-reveal" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2.5rem; margin-top: 2rem; backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
-            <p style="font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: justify; margin-bottom: 0;">
+        <div class="scroll-reveal wbl-info-card" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(164, 198, 57, 0.3); border-radius: 12px; padding: 2.5rem; margin-top: 2rem; backdrop-filter: blur(10px); box-shadow: 0 0 15px rgba(164, 198, 57, 0.1); transition: all 0.3s ease;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: center; margin-bottom: 0;">
                 The <strong>Work-Based Learning (WBL)</strong> programme is an innovative educational approach that integrates academic learning at the university with real-world industry experience. Through this programme, students are exposed to professional working environments, allowing them to develop practical skills, industry networks, and hands-on competencies that align closely with current industry demands. By bridging the gap between theory and practice, WBL ensures graduates are highly employable and industry-ready.
             </p>
         </div>
@@ -204,44 +204,67 @@
                 <p>Botany, Plant Anatomy, Plant Systematic and Phytochemistry</p>
             </div>
 
-            <!-- Dekan -->
-            <div class="team-card scroll-reveal">
-                <div class="img-wrapper">
-                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/Dean.jfif" alt="Dekan">
-                </div>
-                <h3>Associate Prof.  Dr.- Ing. Maizatul Hayati binti Mohamad Yatim</h3>
-                <span class="role">DEAN</span>
-                <p>Human-Computer Interaction (Game Usability)</p>
-            </div>
-
-            <!-- Workbased Learning Lecturers -->
-            <div class="team-card scroll-reveal">
-                <div class="img-wrapper">
-                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/aslina.jpg" alt="Lecturer WBL 1">
-                </div>
-                <h3>Associate Prof. Dr. Aslina bt. Saad</h3>
-                <span class="role">WBL Specialist Lecturer</span>
-                <p>Fakulti Sains dan Matematik</p>
-            </div>
-
-            <div class="team-card scroll-reveal">
-                <div class="img-wrapper">
-                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/rashidi.jpg" alt="Lecturer WBL 2">
-                </div>
-                <h3>Encik Rasyidi bin Johan</h3>
-                <span class="role">WBL Specialist Lecturer</span>
-                <p>Web Framework Development</p>
-            </div>
-
-            <div class="team-card scroll-reveal">
-                <div class="img-wrapper">
-                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/nrohisham.png" alt="Lecturer WBL 3">
-                </div>
-                <h3>Dr. Norhisham bin Mohamad Nordin</h3>
-                <span class="role">WBL Specialist Lecturer</span>
-                <p>Online Business and Online Learning</p>
-            </div>
         </div>
+
+        <hr class="custom-divider scroll-reveal" style="margin: 6rem auto;" />
+
+        <section id="dean-section" class="team-section">
+            <div class="section-header scroll-reveal">
+                <span class="badge-tag badge-purple">DEAN</span>
+                <h2>Faculty Dean</h2>
+                <p>Leading the Faculty of Science and Mathematics.</p>
+            </div>
+            
+            <div class="team-grid" style="display: flex; justify-content: center;">
+                <div class="team-card scroll-reveal">
+                    <div class="img-wrapper">
+                        <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/Dean.jfif" alt="Dekan">
+                    </div>
+                    <h3>Associate Prof.  Dr.- Ing. Maizatul Hayati binti Mohamad Yatim</h3>
+                    <span class="role">DEAN</span>
+                    <p>Human-Computer Interaction (Game Usability)</p>
+                </div>
+            </div>
+        </section>
+
+        <hr class="custom-divider scroll-reveal" style="margin: 6rem auto;" />
+
+        <section id="wbl-lecturers" class="team-section">
+            <div class="section-header scroll-reveal">
+                <span class="badge-tag badge-cyan">WBL SPECIALIST</span>
+                <h2>WBL Specialist Lecturers</h2>
+                <p>Experts guiding the Work-Based Learning programme.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card scroll-reveal">
+                    <div class="img-wrapper">
+                        <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/aslina.jpg" alt="Lecturer WBL 1">
+                    </div>
+                    <h3>Associate Prof. Dr. Aslina bt. Saad</h3>
+                    <span class="role">WBL Specialist Lecturer</span>
+                    <p>Fakulti Sains dan Matematik</p>
+                </div>
+
+                <div class="team-card scroll-reveal">
+                    <div class="img-wrapper">
+                        <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/rashidi.jpg" alt="Lecturer WBL 2">
+                    </div>
+                    <h3>Encik Rasyidi bin Johan</h3>
+                    <span class="role">WBL Specialist Lecturer</span>
+                    <p>Web Framework Development</p>
+                </div>
+
+                <div class="team-card scroll-reveal">
+                    <div class="img-wrapper">
+                        <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/nrohisham.png" alt="Lecturer WBL 3">
+                    </div>
+                    <h3>Dr. Norhisham bin Mohamad Nordin</h3>
+                    <span class="role">WBL Specialist Lecturer</span>
+                    <p>Online Business and Online Learning</p>
+                </div>
+            </div>
+        </section>
 
         <hr class="custom-divider scroll-reveal" style="margin: 6rem auto;" />
 
@@ -344,7 +367,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script>
         // Inisialisasi Vanilla Tilt pada All kad (Kesan Magnetik 3D Parallax)
-        VanillaTilt.init(document.querySelectorAll(".service-card, .team-card"), {
+        VanillaTilt.init(document.querySelectorAll(".service-card, .team-card, .wbl-info-card"), {
             max: 10,
             speed: 400,
             glare: true,
