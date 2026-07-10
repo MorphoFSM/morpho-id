@@ -46,7 +46,7 @@
             @csrf
             <div class="input-group">
                 <label>USER ID</label>
-                <input type="text" name="userid" placeholder="Example: 031211030747" value="{{ old('userid') }}" required>
+                <input type="text" name="userid" placeholder="Example: 010101010101" value="{{ old('userid') }}" required>
             </div>
 
             <div class="input-group">

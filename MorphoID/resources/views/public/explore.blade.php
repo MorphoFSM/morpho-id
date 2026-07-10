@@ -19,7 +19,7 @@
     @include('components.navbar')
 
     <header class="page-header">
-        <h1 style="text-transform: capitalize;">{{ $kategori_semasa }} Exploration</h1>
+        <h1 style="text-transform: uppercase;">{{ $kategori_semasa }} Exploration</h1>
     </header>
 
     <section class="search-filter-section">
@@ -33,7 +33,7 @@
         </div>
 
         <div class="filter-tags">
-            <button class="tag active filter-btn" data-filter="All">All</button>
+            <button class="tag active filter-btn" data-filter="all">All</button>
 
             @if(isset($senarai_tag) && count($senarai_tag) > 0)
                 @foreach($senarai_tag as $tag)

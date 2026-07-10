@@ -44,11 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         btn.addEventListener('click', function() {
             const filterValue = this.getAttribute('data-filter');
 
-            if (filterValue === 'all') {
+            if (filterValue.toLowerCase() === 'all') {
                 filterBtns.forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
             } else {
-                const btnSemua = document.querySelector('.filter-btn[data-filter="semua"]');
+                const btnSemua = document.querySelector('.filter-btn[data-filter="all"]');
                 if(btnSemua) btnSemua.classList.remove('active');
 
                 this.classList.toggle('active');
