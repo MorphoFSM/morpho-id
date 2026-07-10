@@ -37,6 +37,7 @@
             <div class="logo">Morpho<span>.</span>ID</div>
                         <div class="text-nav">
                 <a href="javascript:void(0)" onclick="document.getElementById('perkhidmatan').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer; text-decoration: none; color: inherit;">Service</a>
+                <a href="javascript:void(0)" onclick="document.getElementById('wbl-info').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer; text-decoration: none; color: inherit;">WBL Info</a>
                 <a href="javascript:void(0)" onclick="document.getElementById('pasukan-kami').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer; text-decoration: none; color: inherit;">FSM-Labs Members</a>
                 <a href="javascript:void(0)" onclick="document.getElementById('dev-team').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer; text-decoration: none; color: inherit;">Dev Team</a>
             </div>
@@ -125,6 +126,22 @@
 
     <hr class="custom-divider scroll-reveal" />
 
+    <!-- WBL INFO SECTION -->
+    <section id="wbl-info" class="wbl-section" style="padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; text-align: center;">
+        <div class="section-header scroll-reveal">
+            <span class="badge-tag badge-cyan">INFO WBL</span>
+            <h2>Work-Based Learning (WBL)</h2>
+            <p>Work-Based Learning (WBL) programme overview and information.</p>
+        </div>
+        <div class="scroll-reveal" style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 2.5rem; margin-top: 2rem; backdrop-filter: blur(10px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: #e2e8f0; text-align: justify; margin-bottom: 0;">
+                The <strong>Work-Based Learning (WBL)</strong> programme is an innovative educational approach that integrates academic learning at the university with real-world industry experience. Through this programme, students are exposed to professional working environments, allowing them to develop practical skills, industry networks, and hands-on competencies that align closely with current industry demands. By bridging the gap between theory and practice, WBL ensures graduates are highly employable and industry-ready.
+            </p>
+        </div>
+    </section>
+
+    <hr class="custom-divider scroll-reveal" style="margin: 4rem auto;" />
+
     <section id="pasukan-kami" class="team-section">
         <div class="section-header scroll-reveal">
             <span class="badge-tag badge-purple">FSM-LABS MEMBERS</span>
@@ -185,6 +202,44 @@
                 <h3>ASSOCIATE PROFESSOR DR. NOR NAFIZAH BINTI MOHD NOOR</h3>
                 <span class="role">University Lecturer (Grade DS14)</span>
                 <p>Botany, Plant Anatomy, Plant Systematic and Phytochemistry</p>
+            </div>
+
+            <!-- Dekan -->
+            <div class="team-card scroll-reveal">
+                <div class="img-wrapper">
+                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/Dean.jfif" alt="Dekan">
+                </div>
+                <h3>Associate Prof.  Dr.- Ing. Maizatul Hayati binti Mohamad Yatim</h3>
+                <span class="role">DEAN</span>
+                <p>Human-Computer Interaction (Game Usability)</p>
+            </div>
+
+            <!-- Workbased Learning Lecturers -->
+            <div class="team-card scroll-reveal">
+                <div class="img-wrapper">
+                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/aslina.jpg" alt="Lecturer WBL 1">
+                </div>
+                <h3>Associate Prof. Dr. Aslina bt. Saad</h3>
+                <span class="role">WBL Specialist Lecturer</span>
+                <p>Fakulti Sains dan Matematik</p>
+            </div>
+
+            <div class="team-card scroll-reveal">
+                <div class="img-wrapper">
+                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/rashidi.jpg" alt="Lecturer WBL 2">
+                </div>
+                <h3>Encik Rasyidi bin Johan</h3>
+                <span class="role">WBL Specialist Lecturer</span>
+                <p>Web Framework Development</p>
+            </div>
+
+            <div class="team-card scroll-reveal">
+                <div class="img-wrapper">
+                    <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/nrohisham.png" alt="Lecturer WBL 3">
+                </div>
+                <h3>Dr. Norhisham bin Mohamad Nordin</h3>
+                <span class="role">WBL Specialist Lecturer</span>
+                <p>Online Business and Online Learning</p>
             </div>
         </div>
 
@@ -279,7 +334,7 @@
                 <a href="https://fskik.upsi.edu.my/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> | <a href="https://fskik.upsi.edu.my/security-policy/" target="_blank" rel="noopener">Security Policy</a> | <a href="https://fskik.upsi.edu.my/disclaimer/" target="_blank" rel="noopener">Disclaimer</a>
             </div>
             <div class="copyright">
-                Copyright 2026 &copy; Faculty of Science and Mathematics
+                copyright@Faculty Computing and Meta - Technology
             </div>
         </div>
     </footer>
