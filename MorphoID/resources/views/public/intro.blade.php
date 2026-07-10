@@ -211,17 +211,17 @@
         <section id="dean-section" class="team-section">
             <div class="section-header scroll-reveal">
                 <span class="badge-tag badge-purple">DEAN</span>
-                <h2>Faculty Dean</h2>
-                <p>Leading the Faculty of Science and Mathematics.</p>
+                <h2>Head of the Faculty of Computing and Meta-Technology</h2>
+                <p>Leading the Faculty of Computing and Meta-Technology.</p>
             </div>
-            
+
             <div class="team-grid" style="display: flex; justify-content: center;">
                 <div class="team-card scroll-reveal">
                     <div class="img-wrapper">
                         <img src="https://rghwatxwpjdrwcktsxbo.supabase.co/storage/v1/object/public/avatars/Dean.jfif" alt="Dekan">
                     </div>
                     <h3>Associate Prof.  Dr.- Ing. Maizatul Hayati binti Mohamad Yatim</h3>
-                    <span class="role">DEAN</span>
+                    <span class="role">Dean, Faculty of Computing and Meta-Technology</span>
                     <p>Human-Computer Interaction (Game Usability)</p>
                 </div>
             </div>
@@ -243,7 +243,7 @@
                     </div>
                     <h3>Associate Prof. Dr. Aslina bt. Saad</h3>
                     <span class="role">WBL Specialist Lecturer</span>
-                    <p>Fakulti Sains dan Matematik</p>
+                    <p>Information System, Software Engineering</p>
                 </div>
 
                 <div class="team-card scroll-reveal">
